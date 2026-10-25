@@ -1,0 +1,372 @@
+[
+  {
+    "id": 1,
+    "slug": "ky-023-joystick",
+    "code": "KY-023",
+    "name": "KY-023 Joystick",
+    "category": "Hyrje / Kontroll",
+    "description": "Joystick me dy potenciometra (boshti X dhe Y) dhe një buton kur shtypet.",
+    "purpose": "Kontrollimi i robotëve, lojërave, kamerave pan/tilt dhe menyve.",
+    "wiring": "GND→GND, +5V→5V, VRx→A0, VRy→A1, SW→pin digjital (p.sh. D2) me INPUT_PULLUP. Lexim me analogRead() dhe digitalRead()."
+  },
+  {
+    "id": 2,
+    "slug": "ky-026-flame",
+    "code": "KY-026",
+    "name": "KY-026 Flame",
+    "category": "Sensor drite / zjarri",
+    "description": "Sensor me diodë IR që detekton dritën infra të kuqe të flakës (760–1100 nm). Ka dalje analoge dhe digjitale, ndjeshmëria rregullohet me potenciometër.",
+    "purpose": "Detektimi i zjarrit, sisteme alarmi, robotë zjarrfikës.",
+    "wiring": "G→GND, +→5V, A0→A0 (analogRead), D0→pin digjital (digitalRead)."
+  },
+  {
+    "id": 3,
+    "slug": "ky-016-rgb-led",
+    "code": "KY-016",
+    "name": "KY-016 RGB LED",
+    "category": "Dalje / Ndriçim",
+    "description": "LED RGB 5 mm me katodë të përbashkët, me rezistorë në modul.",
+    "purpose": "Indikatorë statusi, efekte ngjyrash, sinjalizim vizual.",
+    "wiring": "R, G, B→pina PWM (p.sh. D9, D10, D11), '-'→GND. Kontroll me analogWrite(0–255)."
+  },
+  {
+    "id": 4,
+    "slug": "ky-039-heartbeat",
+    "code": "KY-039",
+    "name": "KY-039 Heartbeat",
+    "category": "Sensor biometrik",
+    "description": "LED IR dhe fototransistor që matin ndryshimin e dritës nëpër gisht gjatë rrahjeve të zemrës.",
+    "purpose": "Matja e pulsit (BPM) në projekte mësimore dhe fitnes.",
+    "wiring": "S→A0, '+'→5V, '-'→GND. Lexim me analogRead() dhe analizë e ndryshimeve të sinjalit."
+  },
+  {
+    "id": 5,
+    "slug": "ky-027-light-cup-2-copë",
+    "code": "KY-027",
+    "name": "KY-027 Light Cup (2 copë)",
+    "category": "Sensor anim / Dritë",
+    "description": "Çelës me sferë zhive (tilt) bashkë me LED. Përdoret në çift, njëri modul ndez LED-in e tjetrit.",
+    "purpose": "Efekte drite në varësi të animit, lodra interaktive, magic cup.",
+    "wiring": "G→GND, +→5V, S→pin digjital (input i çelësit), L→pin PWM (LED-i)."
+  },
+  {
+    "id": 6,
+    "slug": "ky-003-hall-magnetic",
+    "code": "KY-003",
+    "name": "KY-003 Hall Magnetic",
+    "category": "Sensor magnetik",
+    "description": "Sensor Hall digjital (A3144) që detekton praninë e fushës magnetike.",
+    "purpose": "Matja e rrotullimeve (RPM), detektimi i pozitës, çelës pa kontakt.",
+    "wiring": "S→pin digjital (p.sh. D2), middle→5V, '-'→GND. digitalRead() ose interrupt."
+  },
+  {
+    "id": 7,
+    "slug": "ky-019-relay",
+    "code": "KY-019",
+    "name": "KY-019 Relay",
+    "category": "Dalje / Komutim",
+    "description": "Rele 5V me një kanal (deri 10A / 250VAC).",
+    "purpose": "Ndezja/fikja e pajisjeve me tension të lartë: llamba, motorë, pompa.",
+    "wiring": "S→pin digjital (p.sh. D7), '+'→5V, '-'→GND. digitalWrite(HIGH/LOW). Kujdes me 230V!"
+  },
+  {
+    "id": 8,
+    "slug": "ky-024-linear-hall",
+    "code": "KY-024",
+    "name": "KY-024 Linear Hall",
+    "category": "Sensor magnetik",
+    "description": "Sensor Hall linear (SS49E) me krahasues LM393; jep dalje analoge dhe digjitale.",
+    "purpose": "Matja e fortësisë së fushës magnetike, pozita e magnetit, matje rryme.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND."
+  },
+  {
+    "id": 9,
+    "slug": "ky-009-smd-rgb",
+    "code": "KY-009",
+    "name": "KY-009 SMD RGB",
+    "category": "Dalje / Ndriçim",
+    "description": "LED RGB SMD 5050 me tre ngjyra (pa rezistorë në modul).",
+    "purpose": "Ndriçim me ngjyra, indikatorë, efekte vizuale.",
+    "wiring": "R, G, B→pina PWM përmes rezistorëve 220Ω, '-'→GND. analogWrite()."
+  },
+  {
+    "id": 10,
+    "slug": "ky-034-7-color-flash",
+    "code": "KY-034",
+    "name": "KY-034 7 Color Flash",
+    "category": "Dalje / Ndriçim",
+    "description": "LED 5 mm që ndërron automatikisht 7 ngjyra kur i jepet tension.",
+    "purpose": "Dekorime, efekte vizuale, sinjalizim.",
+    "wiring": "S→pin digjital (ndez/fik me digitalWrite), '-'→GND."
+  },
+  {
+    "id": 11,
+    "slug": "ky-017-tilt-switch",
+    "code": "KY-017",
+    "name": "KY-017 Tilt Switch",
+    "category": "Sensor anim",
+    "description": "Çelës anim me sferë zhive; mbyllet kur moduli anohet.",
+    "purpose": "Detektimi i animit/rrëzimit, alarm kundër vjedhjes.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead()."
+  },
+  {
+    "id": 12,
+    "slug": "ky-001-ds18b20-temp",
+    "code": "KY-001",
+    "name": "KY-001 DS18B20 Temp",
+    "category": "Sensor temperature",
+    "description": "Sensor digjital i temperaturës DS18B20, protokolli 1-Wire, -55°C deri +125°C, saktësi ±0.5°C.",
+    "purpose": "Matja e saktë e temperaturës: dhoma, ujë, stacione moti.",
+    "wiring": "S→pin digjital (p.sh. D2), middle→5V, '-'→GND. Libraritë OneWire + DallasTemperature."
+  },
+  {
+    "id": 13,
+    "slug": "ky-037-big-sound",
+    "code": "KY-037",
+    "name": "KY-037 Big Sound",
+    "category": "Sensor zëri",
+    "description": "Mikrofon i madh me ndjeshmëri të lartë dhe krahasues LM393; dalje analoge dhe digjitale.",
+    "purpose": "Detektimi i zërit, ndezje me duartrokitje, matje e nivelit të zhurmës.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND. Ndjeshmëria rregullohet me potenciometër."
+  },
+  {
+    "id": 14,
+    "slug": "ky-036-touch",
+    "code": "KY-036",
+    "name": "KY-036 Touch",
+    "category": "Sensor prekje",
+    "description": "Sensor prekjeje metalike; reagon kur preket elektroda me dorë.",
+    "purpose": "Butona me prekje, ndërprerës interaktivë.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND."
+  },
+  {
+    "id": 15,
+    "slug": "ky-011-two-color",
+    "code": "KY-011",
+    "name": "KY-011 Two-Color",
+    "category": "Dalje / Ndriçim",
+    "description": "LED 5 mm me dy ngjyra (e kuqe dhe e gjelbër) me katodë të përbashkët.",
+    "purpose": "Indikatorë statusi (OK/Gabim), sinjalizim.",
+    "wiring": "R dhe G→pina PWM (me rezistor 220Ω), '-'→GND. analogWrite()/digitalWrite()."
+  },
+  {
+    "id": 16,
+    "slug": "ky-008-laser-emit",
+    "code": "KY-008",
+    "name": "KY-008 Laser Emit",
+    "category": "Dalje / Dritë",
+    "description": "Dioda lazer 650 nm (e kuqe), 5 mW.",
+    "purpose": "Tregues lazer, alarme me rreze lazer, projekte me sensorë drite.",
+    "wiring": "S→pin digjital, '-'→GND. digitalWrite(HIGH) e ndez. Mos e drejto në sy!"
+  },
+  {
+    "id": 17,
+    "slug": "ky-020-ball-switch",
+    "code": "KY-020",
+    "name": "KY-020 Ball Switch",
+    "category": "Sensor dridhje / anim",
+    "description": "Çelës anim me sferë metalike; mbyllet/hapet sipas pozitës.",
+    "purpose": "Detektimi i animit, lëvizjes ose dridhjes.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead()."
+  },
+  {
+    "id": 18,
+    "slug": "ky-013-analog-temp",
+    "code": "KY-013",
+    "name": "KY-013 Analog Temp",
+    "category": "Sensor temperature",
+    "description": "Termistor NTC 10kΩ në ndarës tensioni; -55°C deri +125°C.",
+    "purpose": "Matja e temperaturës në mënyrë analoge.",
+    "wiring": "S→A0, middle→5V, '-'→GND. analogRead() dhe llogaritje me ekuacionin Steinhart-Hart."
+  },
+  {
+    "id": 19,
+    "slug": "ky-038-small-sound",
+    "code": "KY-038",
+    "name": "KY-038 Small Sound",
+    "category": "Sensor zëri",
+    "description": "Mikrofon i vogël me krahasues LM393; dalje analoge dhe digjitale.",
+    "purpose": "Detektimi i zërave, duartrokitjeve, aktivizim me zë.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND."
+  },
+  {
+    "id": 20,
+    "slug": "ky-028-digital-temperature",
+    "code": "KY-028",
+    "name": "KY-028 Digital Temperature",
+    "category": "Sensor temperature",
+    "description": "Termistor NTC me krahasues LM393; jep sinjal kur kalohet pragu i temperaturës.",
+    "purpose": "Alarm temperature, kontroll i ventilatorëve/ngrohjes.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND. Pragu rregullohet me potenciometër."
+  },
+  {
+    "id": 21,
+    "slug": "ky-029-mini-two-color",
+    "code": "KY-029",
+    "name": "KY-029 Mini Two-Color",
+    "category": "Dalje / Ndriçim",
+    "description": "LED 3 mm me dy ngjyra (e kuqe dhe e gjelbër).",
+    "purpose": "Indikatorë statusi në hapësira të vogla.",
+    "wiring": "R dhe G→pina PWM (me rezistor), '-'→GND."
+  },
+  {
+    "id": 22,
+    "slug": "ky-004-button",
+    "code": "KY-004",
+    "name": "KY-004 Button",
+    "category": "Hyrje / Kontroll",
+    "description": "Buton i thjeshtë shtypjeje me rezistor 10kΩ.",
+    "purpose": "Input nga përdoruesi: start/stop, ndryshim modi.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead()."
+  },
+  {
+    "id": 23,
+    "slug": "ky-018-photoresistor",
+    "code": "KY-018",
+    "name": "KY-018 Photoresistor",
+    "category": "Sensor drite",
+    "description": "Fotorezistor (LDR); rezistenca zvogëlohet kur rritet drita.",
+    "purpose": "Matja e dritës, ndriçim automatik natën, ndjekës drite.",
+    "wiring": "S→A0, middle→5V, '-'→GND. analogRead() (0–1023)."
+  },
+  {
+    "id": 24,
+    "slug": "ky-005-ir-emission",
+    "code": "KY-005",
+    "name": "KY-005 IR Emission",
+    "category": "Komunikim IR",
+    "description": "LED transmetues infra i kuq 940 nm.",
+    "purpose": "Telekomandë IR për TV/klimë, komunikim pa tel.",
+    "wiring": "S→pin digjital (D3 për IRremote), '-'→GND. Libraria IRremote."
+  },
+  {
+    "id": 25,
+    "slug": "ky-033-tracking",
+    "code": "KY-033",
+    "name": "KY-033 Tracking",
+    "category": "Sensor optik",
+    "description": "Sensor IR reflektues (TCRT5000) që dallon sipërfaqet e zeza nga të bardhat.",
+    "purpose": "Robotë ndjekës vije (line follower).",
+    "wiring": "S→pin digjital, V+→5V, G→GND. digitalRead()."
+  },
+  {
+    "id": 26,
+    "slug": "ky-012-buzzer-aktiv",
+    "code": "KY-012",
+    "name": "KY-012 Buzzer (aktiv)",
+    "category": "Dalje / Zë",
+    "description": "Buzzer aktiv me oscilator të brendshëm; lëshon ton kur merr tension.",
+    "purpose": "Alarme, sinjale paralajmëruese, bip.",
+    "wiring": "S→pin digjital, '-'→GND. digitalWrite(HIGH) e ndez."
+  },
+  {
+    "id": 27,
+    "slug": "ky-025-reed-switch",
+    "code": "KY-025",
+    "name": "KY-025 Reed Switch",
+    "category": "Sensor magnetik",
+    "description": "Çelës reed (në qelq) me krahasues LM393; mbyllet afër magnetit.",
+    "purpose": "Sensorë dyersh/dritaresh, alarm sigurie, numërues.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND."
+  },
+  {
+    "id": 28,
+    "slug": "ky-002-shock",
+    "code": "KY-002",
+    "name": "KY-002 Shock",
+    "category": "Sensor dridhje",
+    "description": "Sensor dridhjeje me sustë; mbyllet kur moduli goditet ose dridhet.",
+    "purpose": "Detektimi i goditjeve, alarm vjedhjeje, detektim i rënies.",
+    "wiring": "S→pin digjital (mundësisht interrupt), middle→5V, '-'→GND."
+  },
+  {
+    "id": 29,
+    "slug": "ky-015-temp-and-humidity-dht11",
+    "code": "KY-015",
+    "name": "KY-015 Temp and Humidity (DHT11)",
+    "category": "Sensor temperature / lagështie",
+    "description": "Sensor DHT11: temperatura 0–50°C (±2°C) dhe lagështia 20–90% (±5%).",
+    "purpose": "Stacione moti, kontroll i serave, monitorim i ambientit.",
+    "wiring": "S→pin digjital (p.sh. D2), middle→5V, '-'→GND. Libraria DHT (Adafruit)."
+  },
+  {
+    "id": 30,
+    "slug": "ky-022-ir-receiver",
+    "code": "KY-022",
+    "name": "KY-022 IR Receiver",
+    "category": "Komunikim IR",
+    "description": "Marrës IR 38 kHz (VS1838B) për sinjalet e telekomandave.",
+    "purpose": "Kontroll i projekteve me telekomandë TV.",
+    "wiring": "S→pin digjital (p.sh. D11), middle→5V, '-'→GND. Libraria IRremote."
+  },
+  {
+    "id": 31,
+    "slug": "ky-032-avoidance",
+    "code": "KY-032",
+    "name": "KY-032 Avoidance",
+    "category": "Sensor pengese",
+    "description": "Sensor IR për shmangie pengesash (2–40 cm), me potenciometra për distancën dhe frekuencën.",
+    "purpose": "Robotë që shmangin pengesat, numërim objektesh.",
+    "wiring": "OUT→pin digjital, '+'→5V, GND→GND, EN→opsional (për aktivizim)."
+  },
+  {
+    "id": 32,
+    "slug": "ky-006-passive-buzzer",
+    "code": "KY-006",
+    "name": "KY-006 Passive Buzzer",
+    "category": "Dalje / Zë",
+    "description": "Buzzer pasiv pa oscilator; tonin e përcakton sinjali PWM.",
+    "purpose": "Melodi, tone të ndryshme, alarme me frekuencë të ndryshueshme.",
+    "wiring": "S→pin digjital/PWM, '-'→GND. Funksioni tone(pin, frekuenca)."
+  },
+  {
+    "id": 33,
+    "slug": "ky-021-mini-reed-switch",
+    "code": "KY-021",
+    "name": "KY-021 Mini Reed Switch",
+    "category": "Sensor magnetik",
+    "description": "Çelës reed i vogël me rezistor 10kΩ; mbyllet afër magnetit.",
+    "purpose": "Sensorë dyersh, numërues rrotullimesh, çelës pa kontakt.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead()."
+  },
+  {
+    "id": 34,
+    "slug": "ky-040-rotary-encoder",
+    "code": "KY-040",
+    "name": "KY-040 Rotary Encoder",
+    "category": "Hyrje / Kontroll",
+    "description": "Enkoder rrotullues me 20 pozita për rrotullim dhe buton kur shtypet.",
+    "purpose": "Rregullimi i volumit, navigim në meny, kontroll i pozitës.",
+    "wiring": "CLK→D2, DT→D3, SW→D4, '+'→5V, GND→GND. Lexim me interrupt ose libraria Encoder."
+  },
+  {
+    "id": 35,
+    "slug": "ky-035-analog-hall",
+    "code": "KY-035",
+    "name": "KY-035 Analog Hall",
+    "category": "Sensor magnetik",
+    "description": "Sensor Hall analog (49E); dalja ndryshon sipas fortësisë dhe polaritetit të magnetit.",
+    "purpose": "Matja e fushës magnetike, sensorë pozicioni, joystick magnetik.",
+    "wiring": "S→A0, middle→5V, '-'→GND. analogRead()."
+  },
+  {
+    "id": 36,
+    "slug": "ky-031-tap-module",
+    "code": "KY-031",
+    "name": "KY-031 Tap Module",
+    "category": "Sensor goditje",
+    "description": "Sensor goditjeje/trokitjeje me sustë; detekton goditje të lehta.",
+    "purpose": "Detektimi i trokitjes në derë, aktivizim me goditje.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead()."
+  },
+  {
+    "id": 37,
+    "slug": "ky-010-light-blocking",
+    "code": "KY-010",
+    "name": "KY-010 Light Blocking",
+    "category": "Sensor optik",
+    "description": "Sensor optik në formë U (photo-interrupter); detekton kur një objekt ndërpret rrezen.",
+    "purpose": "Matja e shpejtësisë (RPM), numërim objektesh, çelësa fundi (end-stop).",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead() ose interrupt."
+  }
+]

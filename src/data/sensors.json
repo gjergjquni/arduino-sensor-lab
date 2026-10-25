@@ -1,0 +1,2410 @@
+[
+  {
+    "id": 1,
+    "slug": "ky-023-joystick",
+    "code": "KY-023",
+    "name": "KY-023 Joystick",
+    "category": "Hyrje / Kontroll",
+    "description": "Joystick me dy potenciometra (boshti X dhe Y) dhe një buton kur shtypet.",
+    "purpose": "Kontrollimi i robotëve, lojërave, kamerave pan/tilt dhe menyve.",
+    "wiring": "GND→GND, +5V→5V, VRx→A0, VRy→A1, SW→pin digjital (p.sh. D2) me INPUT_PULLUP. Lexim me analogRead() dhe digitalRead().",
+    "shortDescription": "Joystick me dy potenciometra (boshti X dhe Y) dhe një buton kur shtypet.",
+    "icon": "gamepad",
+    "accent": "#0d9488",
+    "outputType": "Analoge + Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "GND",
+        "arduino": "GND",
+        "role": "Tokë"
+      },
+      {
+        "module": "+5V",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "VRx",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "VRy",
+        "arduino": "A1",
+        "role": "Sinjal"
+      },
+      {
+        "module": "SW",
+        "arduino": "pin digjital (D2) me INPUT_PULLUP",
+        "role": "Sinjal"
+      }
+    ],
+    "principle": "Dy potenciometra ndryshojnë tensionin analog në boshtin X/Y; butoni SW është kontakt digjital.",
+    "applications": [
+      "Kontrollimi i robotëve",
+      "lojërave",
+      "kamerave pan/tilt dhe menyve"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-023 Joystick",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-023 Joystick",
+      "code": "const int VRx = A0;\nconst int VRy = A1;\nconst int SW = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(SW, INPUT_PULLUP);\n}\n\nvoid loop() {\n  int x = analogRead(VRx);\n  int y = analogRead(VRy);\n  int btn = digitalRead(SW); // LOW kur shtypet\n  Serial.print(\"X=\"); Serial.print(x);\n  Serial.print(\" Y=\"); Serial.print(y);\n  Serial.print(\" SW=\"); Serial.println(btn);\n  delay(100);\n}",
+      "notes": [
+        "analogRead() kthen 0–1023 për çdo bosht.",
+        "INPUT_PULLUP: butoni lexohet LOW kur shtypet."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-023",
+      "023",
+      "joystick",
+      "hyrje",
+      "ky",
+      "kontroll"
+    ],
+    "image": "/sensors/ky-023.png"
+  },
+  {
+    "id": 2,
+    "slug": "ky-026-flame",
+    "code": "KY-026",
+    "name": "KY-026 Flame",
+    "category": "Sensor drite / zjarri",
+    "description": "Sensor me diodë IR që detekton dritën infra të kuqe të flakës (760–1100 nm). Ka dalje analoge dhe digjitale, ndjeshmëria rregullohet me potenciometër.",
+    "purpose": "Detektimi i zjarrit, sisteme alarmi, robotë zjarrfikës.",
+    "wiring": "G→GND, +→5V, A0→A0 (analogRead), D0→pin digjital (digitalRead).",
+    "shortDescription": "Sensor me diodë IR që detekton dritën infra të kuqe të flakës (760–1100 nm). Ka dalje analoge dhe…",
+    "icon": "flame",
+    "accent": "#ea580c",
+    "outputType": "Analoge + Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "A0",
+        "arduino": "A0 (analogRead)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "D0",
+        "arduino": "pin digjital (digitalRead)",
+        "role": "Sinjal"
+      }
+    ],
+    "principle": "Dioda IR reagon ndaj rrezatimit 760–1100 nm të flakës; LM393 krahasues jep prag digjital.",
+    "applications": [
+      "Detektimi i zjarrit",
+      "sisteme alarmi",
+      "robotë zjarrfikës"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-026 Flame",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-026 Flame",
+      "code": "const int flameA = A0;\nconst int flameD = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(flameD, INPUT);\n}\n\nvoid loop() {\n  int raw = analogRead(flameA);\n  int alert = digitalRead(flameD);\n  Serial.print(\"Analog=\"); Serial.print(raw);\n  Serial.print(\" Digital=\"); Serial.println(alert);\n  delay(200);\n}",
+      "notes": [
+        "Rregulloni potenciometrin për pragun digjital.",
+        "Vlera analoge bie kur ka flakë (varësisht modulit)."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "zjarri",
+      "drite",
+      "sensor",
+      "026",
+      "flame",
+      "ky",
+      "ky-026"
+    ],
+    "image": "/sensors/ky-026.png"
+  },
+  {
+    "id": 3,
+    "slug": "ky-016-rgb-led",
+    "code": "KY-016",
+    "name": "KY-016 RGB LED",
+    "category": "Dalje / Ndriçim",
+    "description": "LED RGB 5 mm me katodë të përbashkët, me rezistorë në modul.",
+    "purpose": "Indikatorë statusi, efekte ngjyrash, sinjalizim vizual.",
+    "wiring": "R, G, B→pina PWM (p.sh. D9, D10, D11), '-'→GND. Kontroll me analogWrite(0–255).",
+    "shortDescription": "LED RGB 5 mm me katodë të përbashkët, me rezistorë në modul.",
+    "icon": "lightbulb",
+    "accent": "#eab308",
+    "outputType": "PWM",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "B",
+        "arduino": "pina PWM (D9",
+        "role": "PWM / Dalje"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Tre LED (R/G/B) me katodë të përbashkët; intensiteti kontrollohet me PWM.",
+    "applications": [
+      "Indikatorë statusi",
+      "efekte ngjyrash",
+      "sinjalizim vizual"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-016 RGB LED",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-016 RGB LED",
+      "code": "const int R = 9, G = 10, B = 11;\n\nvoid setup() {\n  pinMode(R, OUTPUT);\n  pinMode(G, OUTPUT);\n  pinMode(B, OUTPUT);\n}\n\nvoid loop() {\n  analogWrite(R, 255); analogWrite(G, 0);   analogWrite(B, 0);   delay(500); // kuqe\n  analogWrite(R, 0);   analogWrite(G, 255); analogWrite(B, 0);   delay(500); // gjelbër\n  analogWrite(R, 0);   analogWrite(G, 0);   analogWrite(B, 255); delay(500); // blu\n}",
+      "notes": [
+        "Përdorni pina PWM (~).",
+        "0 = fikur, 255 = intensitet maksimal (për katodë të përbashkët mund të jetë e kundërta)."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "led",
+      "ky-016",
+      "016",
+      "ndriçim",
+      "rgb",
+      "dalje",
+      "ky"
+    ],
+    "image": "/sensors/ky-016.png"
+  },
+  {
+    "id": 4,
+    "slug": "ky-039-heartbeat",
+    "code": "KY-039",
+    "name": "KY-039 Heartbeat",
+    "category": "Sensor biometrik",
+    "description": "LED IR dhe fototransistor që matin ndryshimin e dritës nëpër gisht gjatë rrahjeve të zemrës.",
+    "purpose": "Matja e pulsit (BPM) në projekte mësimore dhe fitnes.",
+    "wiring": "S→A0, '+'→5V, '-'→GND. Lexim me analogRead() dhe analizë e ndryshimeve të sinjalit.",
+    "shortDescription": "LED IR dhe fototransistor që matin ndryshimin e dritës nëpër gisht gjatë rrahjeve të zemrës.",
+    "icon": "heart",
+    "accent": "#e11d48",
+    "outputType": "Analoge",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Pulsi ndryshon absorbimin e dritës IR nëpër gisht; fototransistori e shndërron në sinjal analog.",
+    "applications": [
+      "Matja e pulsit (BPM) në projekte mësimore dhe fitnes"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-039 Heartbeat",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-039 Heartbeat",
+      "code": "const int sensorPin = A0;\nint threshold = 30;\nint last = 0;\n\nvoid setup() { Serial.begin(9600); }\n\nvoid loop() {\n  int v = analogRead(sensorPin);\n  if (abs(v - last) > threshold) {\n    Serial.println(\"Rrahje e mundshme\");\n  }\n  last = v;\n  delay(20);\n}",
+      "notes": [
+        "Vendoseni gishtin midis LED IR dhe fototransistorit.",
+        "Ky shembull është thjeshtuar - BPM kërkon filtrimin e sinjalit."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "heartbeat",
+      "ky-039",
+      "039",
+      "sensor",
+      "biometrik",
+      "ky"
+    ],
+    "image": "/sensors/ky-039.png"
+  },
+  {
+    "id": 5,
+    "slug": "ky-027-light-cup-2-copë",
+    "code": "KY-027",
+    "name": "KY-027 Light Cup (2 copë)",
+    "category": "Sensor anim / Dritë",
+    "description": "Çelës me sferë zhive (tilt) bashkë me LED. Përdoret në çift, njëri modul ndez LED-in e tjetrit.",
+    "purpose": "Efekte drite në varësi të animit, lodra interaktive, magic cup.",
+    "wiring": "G→GND, +→5V, S→pin digjital (input i çelësit), L→pin PWM (LED-i).",
+    "shortDescription": "Çelës me sferë zhive (tilt) bashkë me LED. Përdoret në çift, njëri modul ndez LED-in e tjetrit.",
+    "icon": "tilt",
+    "accent": "#8b5cf6",
+    "outputType": "PWM",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "S",
+        "arduino": "pin digjital (input i çelësit)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "L",
+        "arduino": "pin PWM (LED-i)",
+        "role": "PWM / Dalje"
+      }
+    ],
+    "principle": "Sfera e zhives mbyll kontaktin kur moduli anohet; LED-i ndizet nga pini L.",
+    "applications": [
+      "Efekte drite në varësi të animit",
+      "lodra interaktive",
+      "magic cup"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-027 Light Cup (2 copë)",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-027 Light Cup (2 copë)",
+      "code": "const int tiltPin = 2;\nconst int ledPin = 9;\n\nvoid setup() {\n  pinMode(tiltPin, INPUT);\n  pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() {\n  int tilted = digitalRead(tiltPin);\n  analogWrite(ledPin, tilted ? 255 : 0);\n}",
+      "notes": [
+        "Light Cup zakonisht përdoret në çift.",
+        "S = input tilt, L = LED PWM."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-027",
+      "dritë",
+      "light",
+      "cup",
+      "sensor",
+      "cop",
+      "anim",
+      "2",
+      "ky",
+      "027"
+    ],
+    "image": "/sensors/ky-027.png"
+  },
+  {
+    "id": 6,
+    "slug": "ky-003-hall-magnetic",
+    "code": "KY-003",
+    "name": "KY-003 Hall Magnetic",
+    "category": "Sensor magnetik",
+    "description": "Sensor Hall digjital (A3144) që detekton praninë e fushës magnetike.",
+    "purpose": "Matja e rrotullimeve (RPM), detektimi i pozitës, çelës pa kontakt.",
+    "wiring": "S→pin digjital (p.sh. D2), middle→5V, '-'→GND. digitalRead() ose interrupt.",
+    "shortDescription": "Sensor Hall digjital (A3144) që detekton praninë e fushës magnetike.",
+    "icon": "magnet",
+    "accent": "#2563eb",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital (D2)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Efekti Hall: fusha magnetike ndryshon gjendjen e A3144 (dalje digjitale).",
+    "applications": [
+      "Matja e rrotullimeve (RPM)",
+      "detektimi i pozitës",
+      "çelës pa kontakt"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-003 Hall Magnetic",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-003 Hall Magnetic",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-003",
+      "003",
+      "magnetic",
+      "sensor",
+      "hall",
+      "ky",
+      "magnetik"
+    ],
+    "image": "/sensors/ky-003.png"
+  },
+  {
+    "id": 7,
+    "slug": "ky-019-relay",
+    "code": "KY-019",
+    "name": "KY-019 Relay",
+    "category": "Dalje / Komutim",
+    "description": "Rele 5V me një kanal (deri 10A / 250VAC).",
+    "purpose": "Ndezja/fikja e pajisjeve me tension të lartë: llamba, motorë, pompa.",
+    "wiring": "S→pin digjital (p.sh. D7), '+'→5V, '-'→GND. digitalWrite(HIGH/LOW). Kujdes me 230V!",
+    "shortDescription": "Rele 5V me një kanal (deri 10A / 250VAC).",
+    "icon": "relay",
+    "accent": "#dc2626",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital (D7)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Sinjali digjital nga Arduino aktivizon bobinën e relés; kontakti mekanik komuton ngarkesën.",
+    "applications": [
+      "Ndezja/fikja e pajisjeve me tension të lartë: llamba",
+      "motorë",
+      "pompa"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-019 Relay",
+      "Kabllo jumper (meshë femër-meshë)",
+      "Ngarkesë e jashtme (vetëm nëse e dini si ta lidhni në mënyrë të sigurt)"
+    ],
+    "safety": "Kujdes: kontakti i relés mund të lidhet me 230V AC. Punoni vetëm nën mbikëqyrje dhe me izolim të duhur.",
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-019 Relay",
+      "code": "const int relayPin = 7;\n\nvoid setup() { pinMode(relayPin, OUTPUT); }\n\nvoid loop() {\n  digitalWrite(relayPin, HIGH); // aktivizo\n  delay(1000);\n  digitalWrite(relayPin, LOW);  // çaktivizo\n  delay(1000);\n}",
+      "notes": [
+        "Testoni fillimisht vetëm anën e sinjalit 5V.",
+        "Mos lidhni 230V pa mbikëqyrje profesionale."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "019",
+      "relay",
+      "dalje",
+      "ky-019",
+      "komutim",
+      "ky"
+    ],
+    "image": "/sensors/ky-019.png"
+  },
+  {
+    "id": 8,
+    "slug": "ky-024-linear-hall",
+    "code": "KY-024",
+    "name": "KY-024 Linear Hall",
+    "category": "Sensor magnetik",
+    "description": "Sensor Hall linear (SS49E) me krahasues LM393; jep dalje analoge dhe digjitale.",
+    "purpose": "Matja e fortësisë së fushës magnetike, pozita e magnetit, matje rryme.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND.",
+    "shortDescription": "Sensor Hall linear (SS49E) me krahasues LM393; jep dalje analoge dhe digjitale.",
+    "icon": "magnet",
+    "accent": "#2563eb",
+    "outputType": "Analoge + Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "A0",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "D0",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "SS49E jep tension linear sipas fushës; LM393 shton prag digjital.",
+    "applications": [
+      "Matja e fortësisë së fushës magnetike",
+      "pozita e magnetit",
+      "matje rryme"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-024 Linear Hall",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-024 Linear Hall",
+      "code": "const int pinA = A0;\nconst int pinD = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(pinD, INPUT);\n}\n\nvoid loop() {\n  Serial.print(\"A0=\"); Serial.print(analogRead(pinA));\n  Serial.print(\" D0=\"); Serial.println(digitalRead(pinD));\n  delay(200);\n}",
+      "notes": [
+        "A0 = nivel analog, D0 = prag digjital.",
+        "Rregulloni potenciometrin në modul nëse ka."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "linear",
+      "024",
+      "sensor",
+      "hall",
+      "ky-024",
+      "ky",
+      "magnetik"
+    ],
+    "image": "/sensors/ky-024.png"
+  },
+  {
+    "id": 9,
+    "slug": "ky-009-smd-rgb",
+    "code": "KY-009",
+    "name": "KY-009 SMD RGB",
+    "category": "Dalje / Ndriçim",
+    "description": "LED RGB SMD 5050 me tre ngjyra (pa rezistorë në modul).",
+    "purpose": "Ndriçim me ngjyra, indikatorë, efekte vizuale.",
+    "wiring": "R, G, B→pina PWM përmes rezistorëve 220Ω, '-'→GND. analogWrite().",
+    "shortDescription": "LED RGB SMD 5050 me tre ngjyra (pa rezistorë në modul).",
+    "icon": "lightbulb",
+    "accent": "#eab308",
+    "outputType": "PWM",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "B",
+        "arduino": "pina PWM përmes rezistorëve 220Ω",
+        "role": "PWM / Dalje"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "LED RGB SMD 5050; kërkon rezistorë të jashtëm për çdo kanal.",
+    "applications": [
+      "Ndriçim me ngjyra",
+      "indikatorë",
+      "efekte vizuale"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-009 SMD RGB",
+      "Kabllo jumper (meshë femër-meshë)",
+      "Rezistorë 220Ω (nëse nuk janë në modul)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-009 SMD RGB",
+      "code": "const int LED1 = 9;\nconst int LED2 = 10;\n\nvoid setup() {\n  pinMode(LED1, OUTPUT);\n  pinMode(LED2, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED1, HIGH); digitalWrite(LED2, LOW);  delay(400);\n  digitalWrite(LED1, LOW);  digitalWrite(LED2, HIGH); delay(400);\n}",
+      "notes": [
+        "Për RGB SMD shtoni rezistorë 220Ω në çdo kanal.",
+        "Kontrolloni polaritetin e katodës/anodës."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "009",
+      "ky-009",
+      "ndriçim",
+      "smd",
+      "rgb",
+      "dalje",
+      "ky"
+    ],
+    "image": "/sensors/ky-009.png"
+  },
+  {
+    "id": 10,
+    "slug": "ky-034-7-color-flash",
+    "code": "KY-034",
+    "name": "KY-034 7 Color Flash",
+    "category": "Dalje / Ndriçim",
+    "description": "LED 5 mm që ndërron automatikisht 7 ngjyra kur i jepet tension.",
+    "purpose": "Dekorime, efekte vizuale, sinjalizim.",
+    "wiring": "S→pin digjital (ndez/fik me digitalWrite), '-'→GND.",
+    "shortDescription": "LED 5 mm që ndërron automatikisht 7 ngjyra kur i jepet tension.",
+    "icon": "lightbulb",
+    "accent": "#eab308",
+    "outputType": "Digjitale",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital (ndez/fik me digitalWrite)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Çipi i brendshëm ciklon automatikisht 7 ngjyra kur moduli furnizohet.",
+    "applications": [
+      "Dekorime",
+      "efekte vizuale",
+      "sinjalizim"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-034 7 Color Flash",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-034 7 Color Flash",
+      "code": "const int outPin = 8;\n\nvoid setup() { pinMode(outPin, OUTPUT); }\n\nvoid loop() {\n  digitalWrite(outPin, HIGH);\n  delay(1000);\n  digitalWrite(outPin, LOW);\n  delay(1000);\n}",
+      "notes": [
+        "HIGH ndez daljen (buzzer aktiv / lazer / flash)."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "7",
+      "flash",
+      "ndriçim",
+      "color",
+      "ky-034",
+      "dalje",
+      "ky",
+      "034"
+    ],
+    "image": "/sensors/ky-034.png"
+  },
+  {
+    "id": 11,
+    "slug": "ky-017-tilt-switch",
+    "code": "KY-017",
+    "name": "KY-017 Tilt Switch",
+    "category": "Sensor anim",
+    "description": "Çelës anim me sferë zhive; mbyllet kur moduli anohet.",
+    "purpose": "Detektimi i animit/rrëzimit, alarm kundër vjedhjes.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead().",
+    "shortDescription": "Çelës anim me sferë zhive; mbyllet kur moduli anohet.",
+    "icon": "tilt",
+    "accent": "#7c3aed",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Sfera e zhives mbyll/hap qarkun sipas këndit të animit.",
+    "applications": [
+      "Detektimi i animit/rrëzimit",
+      "alarm kundër vjedhjes"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-017 Tilt Switch",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-017 Tilt Switch",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-017",
+      "sensor",
+      "switch",
+      "017",
+      "tilt",
+      "anim",
+      "ky"
+    ],
+    "image": "/sensors/ky-017.png"
+  },
+  {
+    "id": 12,
+    "slug": "ky-001-ds18b20-temp",
+    "code": "KY-001",
+    "name": "KY-001 DS18B20 Temp",
+    "category": "Sensor temperature",
+    "description": "Sensor digjital i temperaturës DS18B20, protokolli 1-Wire, -55°C deri +125°C, saktësi ±0.5°C.",
+    "purpose": "Matja e saktë e temperaturës: dhoma, ujë, stacione moti.",
+    "wiring": "S→pin digjital (p.sh. D2), middle→5V, '-'→GND. Libraritë OneWire + DallasTemperature.",
+    "shortDescription": "Sensor digjital i temperaturës DS18B20, protokolli 1-Wire, -55°C deri +125°C, saktësi ±0.5°C.",
+    "icon": "thermo",
+    "accent": "#f97316",
+    "outputType": "Digjitale (protokoll)",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital (D2)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "DS18B20 komunikon temperaturën digjitale përmes bus-it 1-Wire.",
+    "applications": [
+      "Matja e saktë e temperaturës: dhoma",
+      "ujë",
+      "stacione moti"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-001 DS18B20 Temp",
+      "Kabllo jumper (meshë femër-meshë)",
+      "Libraria OneWire + DallasTemperature",
+      "Rezistor pull-up 4.7kΩ (shpesh i nevojshëm në bus 1-Wire)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-001 DS18B20 Temp",
+      "code": "#include <OneWire.h>\n#include <DallasTemperature.h>\n\n#define ONE_WIRE_BUS 2\nOneWire oneWire(ONE_WIRE_BUS);\nDallasTemperature sensors(&oneWire);\n\nvoid setup() {\n  Serial.begin(9600);\n  sensors.begin();\n}\n\nvoid loop() {\n  sensors.requestTemperatures();\n  float t = sensors.getTempCByIndex(0);\n  Serial.print(\"Temp: \"); Serial.print(t); Serial.println(\" C\");\n  delay(1000);\n}",
+      "notes": [
+        "Instaloni libraritë OneWire dhe DallasTemperature.",
+        "Shpesh nevojitet pull-up 4.7kΩ midis S dhe 5V."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "temperature",
+      "ky-001",
+      "001",
+      "sensor",
+      "temp",
+      "ds18b20",
+      "ky"
+    ],
+    "image": "/sensors/ky-001.png"
+  },
+  {
+    "id": 13,
+    "slug": "ky-037-big-sound",
+    "code": "KY-037",
+    "name": "KY-037 Big Sound",
+    "category": "Sensor zëri",
+    "description": "Mikrofon i madh me ndjeshmëri të lartë dhe krahasues LM393; dalje analoge dhe digjitale.",
+    "purpose": "Detektimi i zërit, ndezje me duartrokitje, matje e nivelit të zhurmës.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND. Ndjeshmëria rregullohet me potenciometër.",
+    "shortDescription": "Mikrofon i madh me ndjeshmëri të lartë dhe krahasues LM393; dalje analoge dhe digjitale.",
+    "icon": "mic",
+    "accent": "#0891b2",
+    "outputType": "Analoge + Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "A0",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "D0",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Mikrofoni jep sinjal analog; LM393 krahason me pragun e potenciometrit.",
+    "applications": [
+      "Detektimi i zërit",
+      "ndezje me duartrokitje",
+      "matje e nivelit të zhurmës"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-037 Big Sound",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-037 Big Sound",
+      "code": "const int pinA = A0;\nconst int pinD = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(pinD, INPUT);\n}\n\nvoid loop() {\n  Serial.print(\"A0=\"); Serial.print(analogRead(pinA));\n  Serial.print(\" D0=\"); Serial.println(digitalRead(pinD));\n  delay(200);\n}",
+      "notes": [
+        "A0 = nivel analog, D0 = prag digjital.",
+        "Rregulloni potenciometrin në modul nëse ka."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "big",
+      "sound",
+      "ky-037",
+      "037",
+      "zëri",
+      "sensor",
+      "ky"
+    ],
+    "image": "/sensors/ky-037.png"
+  },
+  {
+    "id": 14,
+    "slug": "ky-036-touch",
+    "code": "KY-036",
+    "name": "KY-036 Touch",
+    "category": "Sensor prekje",
+    "description": "Sensor prekjeje metalike; reagon kur preket elektroda me dorë.",
+    "purpose": "Butona me prekje, ndërprerës interaktivë.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND.",
+    "shortDescription": "Sensor prekjeje metalike; reagon kur preket elektroda me dorë.",
+    "icon": "touch",
+    "accent": "#db2777",
+    "outputType": "Analoge + Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "A0",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "D0",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Prekja e elektrodës ndryshon kapacitetin/tensionin; moduli jep A0 dhe D0.",
+    "applications": [
+      "Butona me prekje",
+      "ndërprerës interaktivë"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-036 Touch",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-036 Touch",
+      "code": "const int pinA = A0;\nconst int pinD = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(pinD, INPUT);\n}\n\nvoid loop() {\n  Serial.print(\"A0=\"); Serial.print(analogRead(pinA));\n  Serial.print(\" D0=\"); Serial.println(digitalRead(pinD));\n  delay(200);\n}",
+      "notes": [
+        "A0 = nivel analog, D0 = prag digjital.",
+        "Rregulloni potenciometrin në modul nëse ka."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "036",
+      "ky-036",
+      "sensor",
+      "prekje",
+      "touch",
+      "ky"
+    ],
+    "image": "/sensors/ky-036.png"
+  },
+  {
+    "id": 15,
+    "slug": "ky-011-two-color",
+    "code": "KY-011",
+    "name": "KY-011 Two-Color",
+    "category": "Dalje / Ndriçim",
+    "description": "LED 5 mm me dy ngjyra (e kuqe dhe e gjelbër) me katodë të përbashkët.",
+    "purpose": "Indikatorë statusi (OK/Gabim), sinjalizim.",
+    "wiring": "R dhe G→pina PWM (me rezistor 220Ω), '-'→GND. analogWrite()/digitalWrite().",
+    "shortDescription": "LED 5 mm me dy ngjyra (e kuqe dhe e gjelbër) me katodë të përbashkët.",
+    "icon": "lightbulb",
+    "accent": "#eab308",
+    "outputType": "PWM / Digjitale",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "G",
+        "arduino": "pina PWM (me rezistor 220Ω)",
+        "role": "Tokë"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Dy LED (e kuqe/e gjelbër) me katodë të përbashkët.",
+    "applications": [
+      "Indikatorë statusi (OK/Gabim)",
+      "sinjalizim"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-011 Two-Color",
+      "Kabllo jumper (meshë femër-meshë)",
+      "Rezistorë 220Ω (nëse nuk janë në modul)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-011 Two-Color",
+      "code": "const int LED1 = 9;\nconst int LED2 = 10;\n\nvoid setup() {\n  pinMode(LED1, OUTPUT);\n  pinMode(LED2, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED1, HIGH); digitalWrite(LED2, LOW);  delay(400);\n  digitalWrite(LED1, LOW);  digitalWrite(LED2, HIGH); delay(400);\n}",
+      "notes": [
+        "Për RGB SMD shtoni rezistorë 220Ω në çdo kanal.",
+        "Kontrolloni polaritetin e katodës/anodës."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "two",
+      "011",
+      "ky-011",
+      "ndriçim",
+      "color",
+      "dalje",
+      "ky"
+    ],
+    "image": "/sensors/ky-011.png"
+  },
+  {
+    "id": 16,
+    "slug": "ky-008-laser-emit",
+    "code": "KY-008",
+    "name": "KY-008 Laser Emit",
+    "category": "Dalje / Dritë",
+    "description": "Dioda lazer 650 nm (e kuqe), 5 mW.",
+    "purpose": "Tregues lazer, alarme me rreze lazer, projekte me sensorë drite.",
+    "wiring": "S→pin digjital, '-'→GND. digitalWrite(HIGH) e ndez. Mos e drejto në sy!",
+    "shortDescription": "Dioda lazer 650 nm (e kuqe), 5 mW.",
+    "icon": "laser",
+    "accent": "#ef4444",
+    "outputType": "Digjitale",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Dioda lazer 650 nm emeton rreze të kuqe kur pini S është HIGH.",
+    "applications": [
+      "Tregues lazer",
+      "alarme me rreze lazer",
+      "projekte me sensorë drite"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-008 Laser Emit",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": "Mos e drejtoni rrezen lazer në sy - rrezik për dëmtim të retinës.",
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-008 Laser Emit",
+      "code": "const int outPin = 8;\n\nvoid setup() { pinMode(outPin, OUTPUT); }\n\nvoid loop() {\n  digitalWrite(outPin, HIGH);\n  delay(1000);\n  digitalWrite(outPin, LOW);\n  delay(1000);\n}",
+      "notes": [
+        "HIGH ndez daljen (buzzer aktiv / lazer / flash)."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "dritë",
+      "008",
+      "laser",
+      "ky-008",
+      "emit",
+      "dalje",
+      "ky"
+    ],
+    "image": "/sensors/ky-008.png"
+  },
+  {
+    "id": 17,
+    "slug": "ky-020-ball-switch",
+    "code": "KY-020",
+    "name": "KY-020 Ball Switch",
+    "category": "Sensor dridhje / anim",
+    "description": "Çelës anim me sferë metalike; mbyllet/hapet sipas pozitës.",
+    "purpose": "Detektimi i animit, lëvizjes ose dridhjes.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead().",
+    "shortDescription": "Çelës anim me sferë metalike; mbyllet/hapet sipas pozitës.",
+    "icon": "shake",
+    "accent": "#a855f7",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Sfera metalike mbyll kontaktin sipas pozitës së modulit.",
+    "applications": [
+      "Detektimi i animit",
+      "lëvizjes ose dridhjes"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-020 Ball Switch",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-020 Ball Switch",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-020",
+      "sensor",
+      "ball",
+      "020",
+      "dridhje",
+      "switch",
+      "anim",
+      "ky"
+    ],
+    "image": "/sensors/ky-020.png"
+  },
+  {
+    "id": 18,
+    "slug": "ky-013-analog-temp",
+    "code": "KY-013",
+    "name": "KY-013 Analog Temp",
+    "category": "Sensor temperature",
+    "description": "Termistor NTC 10kΩ në ndarës tensioni; -55°C deri +125°C.",
+    "purpose": "Matja e temperaturës në mënyrë analoge.",
+    "wiring": "S→A0, middle→5V, '-'→GND. analogRead() dhe llogaritje me ekuacionin Steinhart-Hart.",
+    "shortDescription": "Termistor NTC 10kΩ në ndarës tensioni; -55°C deri +125°C.",
+    "icon": "thermo",
+    "accent": "#f97316",
+    "outputType": "Analoge",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Termistori NTC ndryshon rezistencën me temperaturën; ndarësi i tensionit jep sinjal analog.",
+    "applications": [
+      "Matja e temperaturës në mënyrë analoge"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-013 Analog Temp",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-013 Analog Temp",
+      "code": "const int tempPin = A0;\n\nvoid setup() { Serial.begin(9600); }\n\nvoid loop() {\n  int raw = analogRead(tempPin);\n  float v = raw * (5.0 / 1023.0);\n  // Përafrim i thjeshtë - për saktësi përdorni Steinhart-Hart\n  Serial.print(\"raw=\"); Serial.print(raw);\n  Serial.print(\" V=\"); Serial.println(v, 3);\n  delay(500);\n}",
+      "notes": [
+        "Excel përmend ekuacionin Steinhart-Hart për °C.",
+        "Ky kod tregon vetëm leximin e papërpunuar."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "temperature",
+      "013",
+      "sensor",
+      "temp",
+      "ky",
+      "ky-013",
+      "analog"
+    ],
+    "image": "/sensors/ky-013.png"
+  },
+  {
+    "id": 19,
+    "slug": "ky-038-small-sound",
+    "code": "KY-038",
+    "name": "KY-038 Small Sound",
+    "category": "Sensor zëri",
+    "description": "Mikrofon i vogël me krahasues LM393; dalje analoge dhe digjitale.",
+    "purpose": "Detektimi i zërave, duartrokitjeve, aktivizim me zë.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND.",
+    "shortDescription": "Mikrofon i vogël me krahasues LM393; dalje analoge dhe digjitale.",
+    "icon": "mic",
+    "accent": "#0891b2",
+    "outputType": "Analoge + Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "A0",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "D0",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Mikrofon i vogël + LM393 për prag digjital dhe lexim analog.",
+    "applications": [
+      "Detektimi i zërave",
+      "duartrokitjeve",
+      "aktivizim me zë"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-038 Small Sound",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-038 Small Sound",
+      "code": "const int pinA = A0;\nconst int pinD = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(pinD, INPUT);\n}\n\nvoid loop() {\n  Serial.print(\"A0=\"); Serial.print(analogRead(pinA));\n  Serial.print(\" D0=\"); Serial.println(digitalRead(pinD));\n  delay(200);\n}",
+      "notes": [
+        "A0 = nivel analog, D0 = prag digjital.",
+        "Rregulloni potenciometrin në modul nëse ka."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "sound",
+      "ky-038",
+      "zëri",
+      "038",
+      "sensor",
+      "small",
+      "ky"
+    ],
+    "image": "/sensors/ky-038.png"
+  },
+  {
+    "id": 20,
+    "slug": "ky-028-digital-temperature",
+    "code": "KY-028",
+    "name": "KY-028 Digital Temperature",
+    "category": "Sensor temperature",
+    "description": "Termistor NTC me krahasues LM393; jep sinjal kur kalohet pragu i temperaturës.",
+    "purpose": "Alarm temperature, kontroll i ventilatorëve/ngrohjes.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND. Pragu rregullohet me potenciometër.",
+    "shortDescription": "Termistor NTC me krahasues LM393; jep sinjal kur kalohet pragu i temperaturës.",
+    "icon": "thermo",
+    "accent": "#f97316",
+    "outputType": "Analoge + Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "A0",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "D0",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "NTC + LM393: D0 ndryshon kur temperatura kalon pragun e potenciometrit.",
+    "applications": [
+      "Alarm temperature",
+      "kontroll i ventilatorëve/ngrohjes"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-028 Digital Temperature",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-028 Digital Temperature",
+      "code": "const int pinA = A0;\nconst int pinD = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(pinD, INPUT);\n}\n\nvoid loop() {\n  Serial.print(\"A0=\"); Serial.print(analogRead(pinA));\n  Serial.print(\" D0=\"); Serial.println(digitalRead(pinD));\n  delay(200);\n}",
+      "notes": [
+        "A0 = nivel analog, D0 = prag digjital.",
+        "Rregulloni potenciometrin në modul nëse ka."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "temperature",
+      "digital",
+      "ky-028",
+      "sensor",
+      "028",
+      "ky"
+    ],
+    "image": "/sensors/ky-028.png"
+  },
+  {
+    "id": 21,
+    "slug": "ky-029-mini-two-color",
+    "code": "KY-029",
+    "name": "KY-029 Mini Two-Color",
+    "category": "Dalje / Ndriçim",
+    "description": "LED 3 mm me dy ngjyra (e kuqe dhe e gjelbër).",
+    "purpose": "Indikatorë statusi në hapësira të vogla.",
+    "wiring": "R dhe G→pina PWM (me rezistor), '-'→GND.",
+    "shortDescription": "LED 3 mm me dy ngjyra (e kuqe dhe e gjelbër).",
+    "icon": "lightbulb",
+    "accent": "#eab308",
+    "outputType": "PWM",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "G",
+        "arduino": "pina PWM (me rezistor)",
+        "role": "Tokë"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Dy LED të vogla (3 mm) për sinjalizim statusi.",
+    "applications": [
+      "Indikatorë statusi në hapësira të vogla"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-029 Mini Two-Color",
+      "Kabllo jumper (meshë femër-meshë)",
+      "Rezistorë 220Ω (nëse nuk janë në modul)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-029 Mini Two-Color",
+      "code": "const int LED1 = 9;\nconst int LED2 = 10;\n\nvoid setup() {\n  pinMode(LED1, OUTPUT);\n  pinMode(LED2, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED1, HIGH); digitalWrite(LED2, LOW);  delay(400);\n  digitalWrite(LED1, LOW);  digitalWrite(LED2, HIGH); delay(400);\n}",
+      "notes": [
+        "Për RGB SMD shtoni rezistorë 220Ω në çdo kanal.",
+        "Kontrolloni polaritetin e katodës/anodës."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-029",
+      "dalje",
+      "two",
+      "ndriçim",
+      "color",
+      "mini",
+      "029",
+      "ky"
+    ],
+    "image": "/sensors/ky-029.png"
+  },
+  {
+    "id": 22,
+    "slug": "ky-004-button",
+    "code": "KY-004",
+    "name": "KY-004 Button",
+    "category": "Hyrje / Kontroll",
+    "description": "Buton i thjeshtë shtypjeje me rezistor 10kΩ.",
+    "purpose": "Input nga përdoruesi: start/stop, ndryshim modi.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead().",
+    "shortDescription": "Buton i thjeshtë shtypjeje me rezistor 10kΩ.",
+    "icon": "gamepad",
+    "accent": "#0d9488",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Butoni mbyll qarkun; rezistori 10kΩ stabilizon leximin digjital.",
+    "applications": [
+      "Input nga përdoruesi: start/stop",
+      "ndryshim modi"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-004 Button",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-004 Button",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-004",
+      "button",
+      "hyrje",
+      "ky",
+      "kontroll",
+      "004"
+    ],
+    "image": "/sensors/ky-004.png"
+  },
+  {
+    "id": 23,
+    "slug": "ky-018-photoresistor",
+    "code": "KY-018",
+    "name": "KY-018 Photoresistor",
+    "category": "Sensor drite",
+    "description": "Fotorezistor (LDR); rezistenca zvogëlohet kur rritet drita.",
+    "purpose": "Matja e dritës, ndriçim automatik natën, ndjekës drite.",
+    "wiring": "S→A0, middle→5V, '-'→GND. analogRead() (0–1023).",
+    "shortDescription": "Fotorezistor (LDR); rezistenca zvogëlohet kur rritet drita.",
+    "icon": "sun",
+    "accent": "#ca8a04",
+    "outputType": "Analoge",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "LDR: më shumë dritë → më pak rezistencë → tension i ndryshëm në A0.",
+    "applications": [
+      "Matja e dritës",
+      "ndriçim automatik natën",
+      "ndjekës drite"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-018 Photoresistor",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-018 Photoresistor",
+      "code": "const int ldrPin = A0;\n\nvoid setup() { Serial.begin(9600); }\n\nvoid loop() {\n  int light = analogRead(ldrPin); // 0–1023\n  Serial.println(light);\n  delay(200);\n}",
+      "notes": [
+        "Vlera e lartë/ulët varet nga skema e ndarësit të tensionit."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-018",
+      "photoresistor",
+      "drite",
+      "018",
+      "sensor",
+      "ky"
+    ],
+    "image": "/sensors/ky-018.png"
+  },
+  {
+    "id": 24,
+    "slug": "ky-005-ir-emission",
+    "code": "KY-005",
+    "name": "KY-005 IR Emission",
+    "category": "Komunikim IR",
+    "description": "LED transmetues infra i kuq 940 nm.",
+    "purpose": "Telekomandë IR për TV/klimë, komunikim pa tel.",
+    "wiring": "S→pin digjital (D3 për IRremote), '-'→GND. Libraria IRremote.",
+    "shortDescription": "LED transmetues infra i kuq 940 nm.",
+    "icon": "ir",
+    "accent": "#be123c",
+    "outputType": "Digjitale (protokoll)",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital (D3 për IRremote)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "LED IR 940 nm emeton impulse të padukshme për komunikim IR.",
+    "applications": [
+      "Telekomandë IR për TV/klimë",
+      "komunikim pa tel"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-005 IR Emission",
+      "Kabllo jumper (meshë femër-meshë)",
+      "Libraria IRremote"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-005 IR Emission",
+      "code": "#include <IRremote.hpp>\nconst int IR_SEND_PIN = 3;\n\nvoid setup() {\n  IrSender.begin(IR_SEND_PIN);\n}\n\nvoid loop() {\n  IrSender.sendNEC(0x00FF00FF, 32); // shembull kodi\n  delay(1000);\n}",
+      "notes": [
+        "Përdorni pinin e rekomanduar nga libraria IRremote (shpesh D3).",
+        "Kodi NEC është shembull - përshtateni me marrësin tuaj."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "emission",
+      "005",
+      "ky-005",
+      "komunikim",
+      "ir",
+      "ky"
+    ],
+    "image": "/sensors/ky-005.png"
+  },
+  {
+    "id": 25,
+    "slug": "ky-033-tracking",
+    "code": "KY-033",
+    "name": "KY-033 Tracking",
+    "category": "Sensor optik",
+    "description": "Sensor IR reflektues (TCRT5000) që dallon sipërfaqet e zeza nga të bardhat.",
+    "purpose": "Robotë ndjekës vije (line follower).",
+    "wiring": "S→pin digjital, V+→5V, G→GND. digitalRead().",
+    "shortDescription": "Sensor IR reflektues (TCRT5000) që dallon sipërfaqet e zeza nga të bardhat.",
+    "icon": "eye",
+    "accent": "#0284c7",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "V+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "TCRT5000 mat reflektimin IR: sipërfaqe e bardhë vs e zezë.",
+    "applications": [
+      "Robotë ndjekës vije (line follower)"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-033 Tracking",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-033 Tracking",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "tracking",
+      "033",
+      "ky-033",
+      "optik",
+      "sensor",
+      "ky"
+    ],
+    "image": "/sensors/ky-033.png"
+  },
+  {
+    "id": 26,
+    "slug": "ky-012-buzzer-aktiv",
+    "code": "KY-012",
+    "name": "KY-012 Buzzer (aktiv)",
+    "category": "Dalje / Zë",
+    "description": "Buzzer aktiv me oscilator të brendshëm; lëshon ton kur merr tension.",
+    "purpose": "Alarme, sinjale paralajmëruese, bip.",
+    "wiring": "S→pin digjital, '-'→GND. digitalWrite(HIGH) e ndez.",
+    "shortDescription": "Buzzer aktiv me oscilator të brendshëm; lëshon ton kur merr tension.",
+    "icon": "speaker",
+    "accent": "#0ea5e9",
+    "outputType": "Digjitale",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Osilatori i brendshëm gjeneron ton kur moduli merr tension.",
+    "applications": [
+      "Alarme",
+      "sinjale paralajmëruese",
+      "bip"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-012 Buzzer (aktiv)",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-012 Buzzer (aktiv)",
+      "code": "const int outPin = 8;\n\nvoid setup() { pinMode(outPin, OUTPUT); }\n\nvoid loop() {\n  digitalWrite(outPin, HIGH);\n  delay(1000);\n  digitalWrite(outPin, LOW);\n  delay(1000);\n}",
+      "notes": [
+        "HIGH ndez daljen (buzzer aktiv / lazer / flash)."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-012",
+      "buzzer",
+      "zë",
+      "012",
+      "dalje",
+      "ky",
+      "aktiv"
+    ],
+    "image": "/sensors/ky-012.png"
+  },
+  {
+    "id": 27,
+    "slug": "ky-025-reed-switch",
+    "code": "KY-025",
+    "name": "KY-025 Reed Switch",
+    "category": "Sensor magnetik",
+    "description": "Çelës reed (në qelq) me krahasues LM393; mbyllet afër magnetit.",
+    "purpose": "Sensorë dyersh/dritaresh, alarm sigurie, numërues.",
+    "wiring": "A0→A0, D0→pin digjital, '+'→5V, G→GND.",
+    "shortDescription": "Çelës reed (në qelq) me krahasues LM393; mbyllet afër magnetit.",
+    "icon": "magnet",
+    "accent": "#2563eb",
+    "outputType": "Analoge + Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "A0",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "D0",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "G",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Kontakti reed në qelq mbyllet pranë magnetit; LM393 jep A0/D0.",
+    "applications": [
+      "Sensorë dyersh/dritaresh",
+      "alarm sigurie",
+      "numërues"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-025 Reed Switch",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-025 Reed Switch",
+      "code": "const int pinA = A0;\nconst int pinD = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(pinD, INPUT);\n}\n\nvoid loop() {\n  Serial.print(\"A0=\"); Serial.print(analogRead(pinA));\n  Serial.print(\" D0=\"); Serial.println(digitalRead(pinD));\n  delay(200);\n}",
+      "notes": [
+        "A0 = nivel analog, D0 = prag digjital.",
+        "Rregulloni potenciometrin në modul nëse ka."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "025",
+      "ky-025",
+      "reed",
+      "sensor",
+      "switch",
+      "ky",
+      "magnetik"
+    ],
+    "image": "/sensors/ky-025.png"
+  },
+  {
+    "id": 28,
+    "slug": "ky-002-shock",
+    "code": "KY-002",
+    "name": "KY-002 Shock",
+    "category": "Sensor dridhje",
+    "description": "Sensor dridhjeje me sustë; mbyllet kur moduli goditet ose dridhet.",
+    "purpose": "Detektimi i goditjeve, alarm vjedhjeje, detektim i rënies.",
+    "wiring": "S→pin digjital (mundësisht interrupt), middle→5V, '-'→GND.",
+    "shortDescription": "Sensor dridhjeje me sustë; mbyllet kur moduli goditet ose dridhet.",
+    "icon": "shake",
+    "accent": "#9333ea",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital (mundësisht interrupt)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Susta lëviz dhe mbyll kontaktin kur moduli goditet.",
+    "applications": [
+      "Detektimi i goditjeve",
+      "alarm vjedhjeje",
+      "detektim i rënies"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-002 Shock",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-002 Shock",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "shock",
+      "ky-002",
+      "sensor",
+      "002",
+      "dridhje",
+      "ky"
+    ],
+    "image": "/sensors/ky-002.png"
+  },
+  {
+    "id": 29,
+    "slug": "ky-015-temp-and-humidity-dht11",
+    "code": "KY-015",
+    "name": "KY-015 Temp and Humidity (DHT11)",
+    "category": "Sensor temperature / lagështie",
+    "description": "Sensor DHT11: temperatura 0–50°C (±2°C) dhe lagështia 20–90% (±5%).",
+    "purpose": "Stacione moti, kontroll i serave, monitorim i ambientit.",
+    "wiring": "S→pin digjital (p.sh. D2), middle→5V, '-'→GND. Libraria DHT (Adafruit).",
+    "shortDescription": "Sensor DHT11: temperatura 0–50°C (±2°C) dhe lagështia 20–90% (±5%).",
+    "icon": "droplet",
+    "accent": "#14b8a6",
+    "outputType": "Digjitale (protokoll)",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital (D2)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "DHT11 mat temperaturën dhe lagështinë dhe i dërgon digjitalisht në pin.",
+    "applications": [
+      "Stacione moti",
+      "kontroll i serave",
+      "monitorim i ambientit"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-015 Temp and Humidity (DHT11)",
+      "Kabllo jumper (meshë femër-meshë)",
+      "Libraria DHT (Adafruit)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-015 Temp and Humidity (DHT11)",
+      "code": "#include <DHT.h>\n#define DHTPIN 2\n#define DHTTYPE DHT11\nDHT dht(DHTPIN, DHTTYPE);\n\nvoid setup() {\n  Serial.begin(9600);\n  dht.begin();\n}\n\nvoid loop() {\n  float h = dht.readHumidity();\n  float t = dht.readTemperature();\n  if (isnan(h) || isnan(t)) {\n    Serial.println(\"Lexim i dështuar\");\n    return;\n  }\n  Serial.print(\"T=\"); Serial.print(t);\n  Serial.print(\"C H=\"); Serial.print(h); Serial.println(\"%\");\n  delay(2000);\n}",
+      "notes": [
+        "Instaloni librarinë DHT sensor library (Adafruit).",
+        "Prisni ~2s midis leximëve."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "temperature",
+      "humidity",
+      "dht11",
+      "ky-015",
+      "lagështie",
+      "015",
+      "sensor",
+      "temp",
+      "and",
+      "ky"
+    ],
+    "image": "/sensors/ky-015.png"
+  },
+  {
+    "id": 30,
+    "slug": "ky-022-ir-receiver",
+    "code": "KY-022",
+    "name": "KY-022 IR Receiver",
+    "category": "Komunikim IR",
+    "description": "Marrës IR 38 kHz (VS1838B) për sinjalet e telekomandave.",
+    "purpose": "Kontroll i projekteve me telekomandë TV.",
+    "wiring": "S→pin digjital (p.sh. D11), middle→5V, '-'→GND. Libraria IRremote.",
+    "shortDescription": "Marrës IR 38 kHz (VS1838B) për sinjalet e telekomandave.",
+    "icon": "ir",
+    "accent": "#be123c",
+    "outputType": "Digjitale (protokoll)",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital (D11)",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "VS1838B demodulon sinjalet IR 38 kHz nga telekomanda.",
+    "applications": [
+      "Kontroll i projekteve me telekomandë TV"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-022 IR Receiver",
+      "Kabllo jumper (meshë femër-meshë)",
+      "Libraria IRremote"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-022 IR Receiver",
+      "code": "#include <IRremote.hpp>\nconst int RECV_PIN = 11;\n\nvoid setup() {\n  Serial.begin(9600);\n  IrReceiver.begin(RECV_PIN, ENABLE_LED_FEEDBACK);\n}\n\nvoid loop() {\n  if (IrReceiver.decode()) {\n    Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);\n    IrReceiver.resume();\n  }\n}",
+      "notes": [
+        "Drejtoni telekomandën drejt modulit KY-022.",
+        "Shikoni kodet HEX në Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "receiver",
+      "022",
+      "komunikim",
+      "ky-022",
+      "ir",
+      "ky"
+    ],
+    "image": "/sensors/ky-022.png"
+  },
+  {
+    "id": 31,
+    "slug": "ky-032-avoidance",
+    "code": "KY-032",
+    "name": "KY-032 Avoidance",
+    "category": "Sensor pengese",
+    "description": "Sensor IR për shmangie pengesash (2–40 cm), me potenciometra për distancën dhe frekuencën.",
+    "purpose": "Robotë që shmangin pengesat, numërim objektesh.",
+    "wiring": "OUT→pin digjital, '+'→5V, GND→GND, EN→opsional (për aktivizim).",
+    "shortDescription": "Sensor IR për shmangie pengesash (2–40 cm), me potenciometra për distancën dhe frekuencën.",
+    "icon": "radar",
+    "accent": "#f59e0b",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "OUT",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "GND",
+        "arduino": "GND",
+        "role": "Tokë"
+      },
+      {
+        "module": "EN",
+        "arduino": "opsional (për aktivizim)",
+        "role": "Sinjal"
+      }
+    ],
+    "principle": "Çifti IR emetues/marrës detekton pengesa në 2–40 cm.",
+    "applications": [
+      "Robotë që shmangin pengesat",
+      "numërim objektesh"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-032 Avoidance",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-032 Avoidance",
+      "code": "const int avoidPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(avoidPin, INPUT);\n}\n\nvoid loop() {\n  if (digitalRead(avoidPin) == LOW) {\n    Serial.println(\"Pengese!\");\n  }\n  delay(50);\n}",
+      "notes": [
+        "Rregulloni potenciometrat e distancës/frekuencës në modul.",
+        "Gjendja aktive LOW/HIGH varët nga moduli."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-032",
+      "pengese",
+      "avoidance",
+      "sensor",
+      "ky",
+      "032"
+    ],
+    "image": "/sensors/ky-032.png"
+  },
+  {
+    "id": 32,
+    "slug": "ky-006-passive-buzzer",
+    "code": "KY-006",
+    "name": "KY-006 Passive Buzzer",
+    "category": "Dalje / Zë",
+    "description": "Buzzer pasiv pa oscilator; tonin e përcakton sinjali PWM.",
+    "purpose": "Melodi, tone të ndryshme, alarme me frekuencë të ndryshueshme.",
+    "wiring": "S→pin digjital/PWM, '-'→GND. Funksioni tone(pin, frekuenca).",
+    "shortDescription": "Buzzer pasiv pa oscilator; tonin e përcakton sinjali PWM.",
+    "icon": "speaker",
+    "accent": "#0ea5e9",
+    "outputType": "PWM",
+    "power": "5V përmes pin-it të sinjalit / GND",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital/PWM",
+        "role": "PWM / Dalje"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Pa oscilator të brendshëm; frekuenca e tonit vjen nga PWM/tone().",
+    "applications": [
+      "Melodi",
+      "tone të ndryshme",
+      "alarme me frekuencë të ndryshueshme"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-006 Passive Buzzer",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-006 Passive Buzzer",
+      "code": "const int buzzer = 8;\n\nvoid setup() {}\n\nvoid loop() {\n  tone(buzzer, 440);  // La4\n  delay(300);\n  noTone(buzzer);\n  delay(200);\n  tone(buzzer, 880);\n  delay(300);\n  noTone(buzzer);\n  delay(500);\n}",
+      "notes": [
+        "tone() funksionon me buzzer pasiv.",
+        "Ndryshoni frekuencën për melodi."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-006",
+      "buzzer",
+      "zë",
+      "passive",
+      "dalje",
+      "ky",
+      "006"
+    ],
+    "image": "/sensors/ky-006.png"
+  },
+  {
+    "id": 33,
+    "slug": "ky-021-mini-reed-switch",
+    "code": "KY-021",
+    "name": "KY-021 Mini Reed Switch",
+    "category": "Sensor magnetik",
+    "description": "Çelës reed i vogël me rezistor 10kΩ; mbyllet afër magnetit.",
+    "purpose": "Sensorë dyersh, numërues rrotullimesh, çelës pa kontakt.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead().",
+    "shortDescription": "Çelës reed i vogël me rezistor 10kΩ; mbyllet afër magnetit.",
+    "icon": "magnet",
+    "accent": "#2563eb",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Reed i vogël me pull-up 10kΩ; mbyllet pranë magnetit.",
+    "applications": [
+      "Sensorë dyersh",
+      "numërues rrotullimesh",
+      "çelës pa kontakt"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-021 Mini Reed Switch",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-021 Mini Reed Switch",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-021",
+      "reed",
+      "sensor",
+      "mini",
+      "switch",
+      "ky",
+      "magnetik",
+      "021"
+    ],
+    "image": "/sensors/ky-021.png"
+  },
+  {
+    "id": 34,
+    "slug": "ky-040-rotary-encoder",
+    "code": "KY-040",
+    "name": "KY-040 Rotary Encoder",
+    "category": "Hyrje / Kontroll",
+    "description": "Enkoder rrotullues me 20 pozita për rrotullim dhe buton kur shtypet.",
+    "purpose": "Rregullimi i volumit, navigim në meny, kontroll i pozitës.",
+    "wiring": "CLK→D2, DT→D3, SW→D4, '+'→5V, GND→GND. Lexim me interrupt ose libraria Encoder.",
+    "shortDescription": "Enkoder rrotullues me 20 pozita për rrotullim dhe buton kur shtypet.",
+    "icon": "gamepad",
+    "accent": "#0d9488",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "CLK",
+        "arduino": "D2",
+        "role": "Sinjal"
+      },
+      {
+        "module": "DT",
+        "arduino": "D3",
+        "role": "Sinjal"
+      },
+      {
+        "module": "SW",
+        "arduino": "D4",
+        "role": "Sinjal"
+      },
+      {
+        "module": "+",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "GND",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Dy sinjale kuadrature (CLK/DT) tregojnë drejtimin; SW është buton.",
+    "applications": [
+      "Rregullimi i volumit",
+      "navigim në meny",
+      "kontroll i pozitës"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-040 Rotary Encoder",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-040 Rotary Encoder",
+      "code": "const int CLK = 2;\nconst int DT = 3;\nconst int SW = 4;\nint lastCLK;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(CLK, INPUT);\n  pinMode(DT, INPUT);\n  pinMode(SW, INPUT_PULLUP);\n  lastCLK = digitalRead(CLK);\n}\n\nvoid loop() {\n  int clk = digitalRead(CLK);\n  if (clk != lastCLK && clk == HIGH) {\n    if (digitalRead(DT) != clk) Serial.println(\"CW\");\n    else Serial.println(\"CCW\");\n  }\n  lastCLK = clk;\n  if (digitalRead(SW) == LOW) Serial.println(\"CLICK\");\n}",
+      "notes": [
+        "Leximi me interrupt është më i besueshëm për rrotullim të shpejtë.",
+        "Mund të përdorni librarinë Encoder."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "ky-040",
+      "hyrje",
+      "encoder",
+      "040",
+      "ky",
+      "kontroll",
+      "rotary"
+    ],
+    "image": "/sensors/ky-040.png"
+  },
+  {
+    "id": 35,
+    "slug": "ky-035-analog-hall",
+    "code": "KY-035",
+    "name": "KY-035 Analog Hall",
+    "category": "Sensor magnetik",
+    "description": "Sensor Hall analog (49E); dalja ndryshon sipas fortësisë dhe polaritetit të magnetit.",
+    "purpose": "Matja e fushës magnetike, sensorë pozicioni, joystick magnetik.",
+    "wiring": "S→A0, middle→5V, '-'→GND. analogRead().",
+    "shortDescription": "Sensor Hall analog (49E); dalja ndryshon sipas fortësisë dhe polaritetit të magnetit.",
+    "icon": "magnet",
+    "accent": "#2563eb",
+    "outputType": "Analoge",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "A0",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Sensori Hall 49E jep tension analog proporcional me fushën dhe polaritetin.",
+    "applications": [
+      "Matja e fushës magnetike",
+      "sensorë pozicioni",
+      "joystick magnetik"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-035 Analog Hall",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-035 Analog Hall",
+      "code": "const int hallPin = A0;\n\nvoid setup() { Serial.begin(9600); }\n\nvoid loop() {\n  int v = analogRead(hallPin);\n  Serial.println(v);\n  delay(100);\n}",
+      "notes": [
+        "Vlera ndryshon me largësinë dhe polaritetin e magnetit."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "hall",
+      "sensor",
+      "035",
+      "ky-035",
+      "ky",
+      "magnetik",
+      "analog"
+    ],
+    "image": "/sensors/ky-035.png"
+  },
+  {
+    "id": 36,
+    "slug": "ky-031-tap-module",
+    "code": "KY-031",
+    "name": "KY-031 Tap Module",
+    "category": "Sensor goditje",
+    "description": "Sensor goditjeje/trokitjeje me sustë; detekton goditje të lehta.",
+    "purpose": "Detektimi i trokitjes në derë, aktivizim me goditje.",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead().",
+    "shortDescription": "Sensor goditjeje/trokitjeje me sustë; detekton goditje të lehta.",
+    "icon": "tap",
+    "accent": "#c026d3",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Susta reaguese detekton trokitje/goditje të lehta.",
+    "applications": [
+      "Detektimi i trokitjes në derë",
+      "aktivizim me goditje"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-031 Tap Module",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-031 Tap Module",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "tap",
+      "031",
+      "goditje",
+      "sensor",
+      "ky-031",
+      "module",
+      "ky"
+    ],
+    "image": "/sensors/ky-031.png"
+  },
+  {
+    "id": 37,
+    "slug": "ky-010-light-blocking",
+    "code": "KY-010",
+    "name": "KY-010 Light Blocking",
+    "category": "Sensor optik",
+    "description": "Sensor optik në formë U (photo-interrupter); detekton kur një objekt ndërpret rrezen.",
+    "purpose": "Matja e shpejtësisë (RPM), numërim objektesh, çelësa fundi (end-stop).",
+    "wiring": "S→pin digjital, middle→5V, '-'→GND. digitalRead() ose interrupt.",
+    "shortDescription": "Sensor optik në formë U (photo-interrupter); detekton kur një objekt ndërpret rrezen.",
+    "icon": "eye",
+    "accent": "#0284c7",
+    "outputType": "Digjitale",
+    "power": "5V (Arduino Uno)",
+    "pins": [
+      {
+        "module": "S",
+        "arduino": "pin digjital",
+        "role": "Sinjal"
+      },
+      {
+        "module": "middle",
+        "arduino": "5V",
+        "role": "Furnizim"
+      },
+      {
+        "module": "-",
+        "arduino": "GND",
+        "role": "Tokë"
+      }
+    ],
+    "principle": "Photo-interrupter U: objekti ndërpret rrezen midis LED dhe fotodetektorit.",
+    "applications": [
+      "Matja e shpejtësisë (RPM)",
+      "numërim objektesh",
+      "çelësa fundi (end-stop)"
+    ],
+    "components": [
+      "Arduino Uno (ose kompatibël)",
+      "Moduli KY-010 Light Blocking",
+      "Kabllo jumper (meshë femër-meshë)"
+    ],
+    "safety": null,
+    "codeExample": {
+      "language": "arduino",
+      "title": "Shembull bazë për KY-010 Light Blocking",
+      "code": "const int sensorPin = 2;\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(sensorPin, INPUT);\n}\n\nvoid loop() {\n  int state = digitalRead(sensorPin);\n  Serial.println(state == HIGH ? \"HIGH\" : \"LOW\");\n  delay(100);\n}",
+      "notes": [
+        "Ndryshoni pin-in sipas lidhjes suaj.",
+        "Disa module janë aktive LOW - provojeni me Serial Monitor."
+      ],
+      "verified": false,
+      "disclaimer": "Shembull edukativ - nuk është verifikuar kundër hardware-it tuaj specifik. Kontrolloni pinout-in e modulit dhe rregulloni pinat."
+    },
+    "tags": [
+      "blocking",
+      "light",
+      "010",
+      "optik",
+      "sensor",
+      "ky-010",
+      "ky"
+    ],
+    "image": "/sensors/ky-010.png"
+  }
+]
