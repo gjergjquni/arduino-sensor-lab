@@ -17,7 +17,7 @@ export function Footer() {
           <Link to="/learn">IoT & Arduino</Link>
           <Link to="/projects">Mini-projekte</Link>
           <Link to="/learn/flashcards">Flashcards</Link>
-          <Link to="/creators">Creators</Link>
+          <Link to="/creators">Krijuesit</Link>
         </div>
       </div>
     </footer>

@@ -12,7 +12,7 @@ export function CreatorsPage() {
   return (
     <div className="container page-title">
       <p className="eyebrow">Ekipi</p>
-      <h1>Creators</h1>
+      <h1>Krijuesit</h1>
       <p className="muted" style={{ maxWidth: 560 }}>
         Arduino Sensor Lab u krijua nga studentët e lëndës IoT (Internet of Things),
         nën udhëheqjen e profesoreshës.

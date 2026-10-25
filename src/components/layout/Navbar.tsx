@@ -8,7 +8,7 @@ const links = [
   { to: '/learn', label: 'Mëso' },
   { to: '/projects', label: 'Projekte' },
   { to: '/learn/quiz', label: 'Quiz' },
-  { to: '/creators', label: 'Creators' },
+  { to: '/creators', label: 'Krijuesit' },
 ]
 
 export function Navbar() {
